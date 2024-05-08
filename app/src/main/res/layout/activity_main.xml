@@ -41,43 +41,43 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_1"
                 android:layout_margin="6dp"
-                android:text="GENERAL"/>
+                android:text="@string/type1"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_2"
                 android:layout_margin="6dp"
-                android:text="BUSINESS"/>
+                android:text="@string/type2"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_3"
                 android:layout_margin="6dp"
-                android:text="SPORTS"/>
+                android:text="@string/type3"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_4"
                 android:layout_margin="6dp"
-                android:text="TECHNOLOGY"/>
+                android:text="@string/type4"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_5"
                 android:layout_margin="6dp"
-                android:text="HEALTH"/>
+                android:text="@string/type5"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_6"
                 android:layout_margin="6dp"
-                android:text="ENTERTAINMENT"/>
+                android:text="@string/type6"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_7"
                 android:layout_margin="6dp"
-                android:text="SCIENCE"/>
+                android:text="@string/type7"/>
 
 
         </LinearLayout>

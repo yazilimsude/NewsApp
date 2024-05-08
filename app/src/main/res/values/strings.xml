@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">News Now</string>
+    <string name="type1">GENERAL</string>
+    <string name="type2">BUSINESS</string>
+    <string name="type3">SPORTS</string>
+    <string name="type4">TECHNOLOGY</string>
+    <string name="type5">HEALTH</string>
+    <string name="type6">ENTERTAINMENT</string>
+    <string name="type7">SCIENCE</string>
+    <string name="bildirim_baslik">BİLDİRİM AYARLARI</string>
+
 </resources>
