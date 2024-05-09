@@ -13,11 +13,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="5dp"
-        android:textSize="30sp"
+        android:layout_marginBottom="15dp"
+        android:textSize="35sp"
         android:fontFamily="sans-serif-smallcaps"
         android:textColor="@color/my_primary"
         android:text="@string/bildirim_baslik"
         android:id="@+id/bildirim_baslik"/>
+
     <CheckBox
         android:id="@+id/checkBox1"
         android:layout_width="match_parent"
@@ -88,7 +90,16 @@
         android:buttonTint="@color/my_secondary"
         android:background="@drawable/checkbox_selector"
         android:text="@string/type7" />
-
+    <Button
+        android:id="@+id/kaydet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textColor="@color/white"
+        android:background="@color/my_primary"
+        android:text="KAYDET" />
 
 
 

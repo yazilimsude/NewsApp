@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.content.Intent;
 
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.kwabenaberko.newsapilib.NewsApiClient;
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearProgressIndicator progressIndicator;
     Button btn1,btn2,btn3,btn4,btn5,btn6,btn7;
     SearchView searchView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn5.setOnClickListener(this);
         btn6.setOnClickListener(this);
         btn7.setOnClickListener(this);
+
+        ImageView settingImageView = findViewById(R.id.setting);
+        settingImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BildirimActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -114,4 +128,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String category = btn.getText().toString();
         getNews(category,null);
     }
+
 }
