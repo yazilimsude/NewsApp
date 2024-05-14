@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "19604057659",
+    "project_id": "buyukveri-7d8ff",
+    "storage_bucket": "buyukveri-7d8ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19604057659:android:b4a325cf31d31e214eb61e",
+        "android_client_info": {
+          "package_name": "com.example.newsnow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSjzHMYKp-M1RDryf3WVTPgjMs1BJmwXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
