@@ -6,13 +6,33 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class BildirimActivity extends AppCompatActivity {
+    CheckBox general, business, sports, technolgy, health, entertainment, science;
     Button kaydet;
     Toolbar toolbar;
+
+    FirebaseDatabase database;
+    DatabaseReference reference;
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +47,73 @@ public class BildirimActivity extends AppCompatActivity {
                 finish();
             }
         });
+        general = findViewById(R.id.general);
+        business = findViewById(R.id.business);
+        sports = findViewById(R.id.sports);
+        technolgy = findViewById(R.id.technology);
+        health = findViewById(R.id.health);
+        entertainment = findViewById(R.id.entertainment);
+        science = findViewById(R.id.science);
 
         kaydet = findViewById(R.id.kaydet);
+
+        auth= FirebaseAuth.getInstance();
+        database=FirebaseDatabase.getInstance("https://buyukveri-7d8ff-default-rtdb.europe-west1.firebasedatabase.app/");
+        reference = database.getReference("Users").child(auth.getUid()).child("SelectedCategories");
+
+        loadSelectedCategories();
         kaydet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                saveSelectedCategories();
+            }
+        });
+
+    }
+    private void saveSelectedCategories(){
+        Map<String, Boolean> selectedCategories = new HashMap<>();
+        selectedCategories.put("general", general.isChecked());
+        selectedCategories.put("business", business.isChecked());
+        selectedCategories.put("sports", sports.isChecked());
+        selectedCategories.put("technolgy", technolgy.isChecked());
+        selectedCategories.put("health", health.isChecked());
+        selectedCategories.put("entertainment", entertainment.isChecked());
+        selectedCategories.put("science", science.isChecked());
+        reference.setValue(selectedCategories, new DatabaseReference.CompletionListener() {
+
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                if (error == null) {
+                    Toast.makeText(BildirimActivity.this, "Kategoriler başarıyla kaydedildi.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(BildirimActivity.this, "Failed to save categories: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
+    private void loadSelectedCategories() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Map<String, Boolean> selectedCategories = (Map<String, Boolean>) snapshot.getValue();
+                    if (selectedCategories != null) {
+                        general.setChecked(selectedCategories.getOrDefault("general", false));
+                        business.setChecked(selectedCategories.getOrDefault("business", false));
+                        sports.setChecked(selectedCategories.getOrDefault("sports", false));
+                        technolgy.setChecked(selectedCategories.getOrDefault("technolgy", false));
+                        health.setChecked(selectedCategories.getOrDefault("health", false));
+                        entertainment.setChecked(selectedCategories.getOrDefault("entertainment", false));
+                        science.setChecked(selectedCategories.getOrDefault("science", false));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(BildirimActivity.this, "Veri yükleme başarısız: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }
