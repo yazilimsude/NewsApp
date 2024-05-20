@@ -3,11 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="40dp"
-    tools:context=".BildirimActivity">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".BildirimActivity"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="40dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -100,7 +110,7 @@
         android:textColor="@color/white"
         android:background="@color/my_primary"
         android:text="KAYDET" />
-
+    </LinearLayout>
 
 
 
