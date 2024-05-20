@@ -21,7 +21,7 @@
         android:id="@+id/bildirim_baslik"/>
 
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/general"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -31,7 +31,7 @@
         android:background="@drawable/checkbox_selector"
         android:text="@string/type1"/>
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/business"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -41,7 +41,7 @@
         android:background="@drawable/checkbox_selector"
         android:text="@string/type2"/>
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/sports"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -51,7 +51,7 @@
         android:background="@drawable/checkbox_selector"
         android:text="@string/type3"/>
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/technology"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -61,7 +61,7 @@
         android:background="@drawable/checkbox_selector"
         android:text="@string/type4"/>
     <CheckBox
-        android:id="@+id/checkBox5"
+        android:id="@+id/health"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -71,7 +71,7 @@
         android:background="@drawable/checkbox_selector"
         android:text="@string/type5"/>
     <CheckBox
-        android:id="@+id/checkBox6"
+        android:id="@+id/entertainment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -81,7 +81,7 @@
         android:background="@drawable/checkbox_selector"
         android:text="@string/type6"/>
     <CheckBox
-        android:id="@+id/checkBox7"
+        android:id="@+id/science"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
