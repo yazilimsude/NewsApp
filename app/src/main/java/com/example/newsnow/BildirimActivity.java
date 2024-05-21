@@ -4,6 +4,7 @@ package com.example.newsnow;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -29,9 +30,8 @@ public class BildirimActivity extends AppCompatActivity {
     CheckBox general, business, sports, technolgy, health, entertainment, science;
     Button kaydet;
     Toolbar toolbar;
-
     FirebaseDatabase database;
-    DatabaseReference reference;
+    DatabaseReference reference, categoryref;
     FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +60,7 @@ public class BildirimActivity extends AppCompatActivity {
         auth= FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance("https://buyukveri-7d8ff-default-rtdb.europe-west1.firebasedatabase.app/");
         reference = database.getReference("Users").child(auth.getUid()).child("SelectedCategories");
+        categoryref = database.getReference("Categories");
 
         loadSelectedCategories();
         kaydet.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +80,7 @@ public class BildirimActivity extends AppCompatActivity {
         selectedCategories.put("health", health.isChecked());
         selectedCategories.put("entertainment", entertainment.isChecked());
         selectedCategories.put("science", science.isChecked());
+
         reference.setValue(selectedCategories, new DatabaseReference.CompletionListener() {
 
             @Override
@@ -90,6 +92,19 @@ public class BildirimActivity extends AppCompatActivity {
                 }
             }
         });
+
+        for (Map.Entry<String, Boolean> entry : selectedCategories.entrySet()) {
+            if (entry.getValue()) {
+                categoryref.child(entry.getKey()).child(auth.getCurrentUser().getUid()).setValue("subscribed", new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                        if (error != null) {
+                            Log.e("FirebaseError", "Failed to update category: " + entry.getKey() + " Error: " + error.getMessage());
+                        }
+                    }
+                });
+            }
+        }
     }
     private void loadSelectedCategories() {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
