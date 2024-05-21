@@ -103,6 +103,29 @@ public class BildirimActivity extends AppCompatActivity {
                         }
                     }
                 });
+            } else {
+                Log.d("girdik mi","girdik");
+                categoryref.child(entry.getKey()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            Log.d("snapshot",""+snapshot);
+                            Log.d("snapshotvalue",""+snapshot.getValue());
+                            Log.d("snapshotchildren",""+snapshot.hasChildren()+" "+snapshot.getChildrenCount());
+                            if(snapshot.hasChild(auth.getCurrentUser().getUid())){
+                                Log.d("deneme","griiş");
+                                categoryref.child(entry.getKey()).child(auth.getCurrentUser().getUid()).removeValue();
+                            }
+
+                            //Log.d("snapshot",snapshot.child(entry.getKey()).child(auth.getCurrentUser().getUid()).toString());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         }
     }

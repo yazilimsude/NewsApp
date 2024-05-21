@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearProgressIndicator progressIndicator;
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7;
     SearchView searchView;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -165,7 +166,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     startActivity(intentCategories);
                     return true; // startActivity başarılı oldu, bu yüzden true döndür
                 } else if (item.getItemId() == R.id.action_logout) {
-                    Intent intentLogout = new Intent(MainActivity.this, SignUpActivity.class);
+                    auth.signOut();
+                    Intent intentLogout = new Intent(MainActivity.this, SignInActivity.class);
                     startActivity(intentLogout);
                     return true; // startActivity başarılı oldu, bu yüzden true döndür
                 }

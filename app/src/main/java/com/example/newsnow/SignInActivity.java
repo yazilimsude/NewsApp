@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -48,6 +49,19 @@ public class SignInActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser curuser =FirebaseAuth.getInstance().getCurrentUser();
+        if(curuser != null){
+            Intent tomain = new Intent(SignInActivity.this, MainActivity.class);
+            startActivity(tomain);
+            finish();
+        }
+    }
+
     private void loginUser(){
         String userEmail=email.getText().toString();
         String userPassword=password.getText().toString();
