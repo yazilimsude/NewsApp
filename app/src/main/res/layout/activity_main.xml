@@ -21,10 +21,17 @@
     <ImageView
         android:id="@+id/setting"
         android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="360dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="330dp"
         android:layout_marginTop="-35dp"
         android:src="@drawable/setting" />
+    <ImageView
+    android:id="@+id/notification"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:layout_marginStart="360dp"
+    android:layout_marginTop="-35dp"
+    android:src="@drawable/notification" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
