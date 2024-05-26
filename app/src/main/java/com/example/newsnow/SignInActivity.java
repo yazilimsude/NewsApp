@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -83,6 +84,7 @@ public class SignInActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            Log.d("Rana-Login", auth.getUid());
                             Toast.makeText(SignInActivity.this,"Giriş yapıldı",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(SignInActivity.this, MainActivity.class));
 

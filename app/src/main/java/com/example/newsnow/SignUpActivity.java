@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Firebase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
 
@@ -88,6 +89,7 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            completeSignUpProcess();
                             user=auth.getCurrentUser();
                             hashMap=new HashMap<>();
                             hashMap.put("name",userName);
@@ -104,6 +106,34 @@ public class SignUpActivity extends AppCompatActivity {
                             Toast.makeText(SignUpActivity.this, "Error:"+task.getException(), Toast.LENGTH_SHORT).show();
                         }
                     }
+                });
+    }
+    private void completeSignUpProcess() {
+        // Kullanıcı sign up işlemi tamamlandığında
+        // cihaz token'ını al ve Firebase veritabanına kaydet
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        String token = task.getResult();
+                        // Kullanıcının token'ını Firebase veritabanına kaydetme
+                        saveTokenToFirebase(token);
+                    }
+                });
+    }
+
+    private void saveTokenToFirebase(String token) {
+        // Firebase veritabanına token'ı kaydetme
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid(); // Kullanıcının ID'si buraya gelmeli
+        Log.d("Rana-Rana", userId);
+        reference=database.getReference("Users");
+        reference.child(userId).child("token").setValue(token)
+                .addOnSuccessListener(aVoid -> {
+                    // Token başarıyla kaydedildi
+                    Toast.makeText(SignUpActivity.this, "Token kaydedildi", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    // Token kaydı başarısız oldu
+                    Toast.makeText(SignUpActivity.this, "Token kaydedilemedi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 }
