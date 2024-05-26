@@ -27,7 +27,7 @@ import java.util.Map;
 
 
 public class BildirimActivity extends AppCompatActivity {
-    CheckBox general, business, sports, technolgy, health, entertainment, science;
+    CheckBox general, business, sports, technology, health, entertainment, science;
     Button kaydet;
     Toolbar toolbar;
     FirebaseDatabase database;
@@ -50,7 +50,7 @@ public class BildirimActivity extends AppCompatActivity {
         general = findViewById(R.id.general);
         business = findViewById(R.id.business);
         sports = findViewById(R.id.sports);
-        technolgy = findViewById(R.id.technology);
+        technology = findViewById(R.id.technology);
         health = findViewById(R.id.health);
         entertainment = findViewById(R.id.entertainment);
         science = findViewById(R.id.science);
@@ -76,7 +76,7 @@ public class BildirimActivity extends AppCompatActivity {
         selectedCategories.put("general", general.isChecked());
         selectedCategories.put("business", business.isChecked());
         selectedCategories.put("sports", sports.isChecked());
-        selectedCategories.put("technolgy", technolgy.isChecked());
+        selectedCategories.put("technology", technology.isChecked());
         selectedCategories.put("health", health.isChecked());
         selectedCategories.put("entertainment", entertainment.isChecked());
         selectedCategories.put("science", science.isChecked());
@@ -139,7 +139,7 @@ public class BildirimActivity extends AppCompatActivity {
                         general.setChecked(selectedCategories.getOrDefault("general", false));
                         business.setChecked(selectedCategories.getOrDefault("business", false));
                         sports.setChecked(selectedCategories.getOrDefault("sports", false));
-                        technolgy.setChecked(selectedCategories.getOrDefault("technolgy", false));
+                        technology.setChecked(selectedCategories.getOrDefault("technology", false));
                         health.setChecked(selectedCategories.getOrDefault("health", false));
                         entertainment.setChecked(selectedCategories.getOrDefault("entertainment", false));
                         science.setChecked(selectedCategories.getOrDefault("science", false));
