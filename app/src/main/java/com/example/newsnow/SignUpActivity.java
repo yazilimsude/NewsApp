@@ -116,6 +116,7 @@ public class SignUpActivity extends AppCompatActivity {
                     if (task.isSuccessful() && task.getResult() != null) {
                         String token = task.getResult();
                         // Kullanıcının token'ını Firebase veritabanına kaydetme
+                        Log.d("Token-Rana", token);
                         saveTokenToFirebase(token);
                     }
                 });
